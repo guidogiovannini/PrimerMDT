@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>Familiares</title>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-bordered text-center">
+            <thead class="bg-primary text light">
+                <tr>
+                    <h1><center>FAMILIARES</center></h1>
+                    <td>    ID  </td>
+                    <td>    NOMBRE  </td>
+                    <td>    APELLIDO    </td> 
+                    <td>    EDAD    </td>
+                    <td>     PARENTESCO  </td>
+                    <td>    ACCIONES </td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for fam in listafam %}
+                <tr>
+                    <td>    {{fam.id}}    </td>
+                    <td>    {{fam.Nombre}}    </td>
+                    <td>    {{fam.Apellido}}  </td>
+                    <td>    {{fam.Edad}}  </td>
+                    <td>    {{fam.Parentesco}}    </td>
+                    <td>
+                        <a href="{% url 'borrar' fam.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+            {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        <form action="{% url 'agregar' %}" method="POST" class="form-group mt-5 col-6" center>
+            {% csrf_token %}
+            <h2><Center>Agregar Familiar</Center></h2>
+            <input type="text" name="Nombre" class="form-control mb-2" placeholder="ingrese Nombre">
+            <input type="text" name="Apellido" class="form-control mb-2" placeholder="ingrese Apellido">
+            <input type="number" name="Edad" class="form-control mb-2" placeholder="ingrese Edad">
+            <input type="text" name="Parentesco" class="form-control mb-2" placeholder="ingrese Parentesco">
+            <button class="btn btn-success col-12" type="submit">Guardar</button>
+
+        </form>
+    </div>
+</body>
+</html>
